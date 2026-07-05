@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diya Mary George | Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* --- Project card layout override: 2 cards per row --- */
+        #projects .project-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 28px;
+        }
+        #projects .project-card {
+            width: 100%;
+        }
+        #projects .project-card .project-card-header h4 {
+            margin: 0 0 14px 0;
+        }
+        #projects .project-card .project-card-body p {
+            margin: 0 0 12px 0;
+        }
+        #projects .project-card .tech-stack {
+            margin-bottom: 0;
+        }
+        #projects .project-card .tech-list {
+            list-style: none;
+            padding: 0;
+            margin: 12px 0 0 0;
+        }
+        #projects .project-card .tech-list li {
+            margin-bottom: 6px;
+        }
+        @media (max-width: 800px) {
+            #projects .project-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* --- About section: moving red grid background --- */
+        #about {
+            position: relative;
+            overflow: hidden;
+        }
+        #about .about-grid-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            background-image:
+                repeating-linear-gradient(0deg, rgba(255, 40, 60, 0.35) 0px, rgba(255, 40, 60, 0.35) 1px, transparent 1px, transparent 40px),
+                repeating-linear-gradient(90deg, rgba(255, 40, 60, 0.35) 0px, rgba(255, 40, 60, 0.35) 1px, transparent 1px, transparent 40px);
+            background-size: 40px 40px;
+            animation: about-grid-move 6s linear infinite;
+            -webkit-mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 55%, rgba(0,0,0,0) 100%);
+            mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 55%, rgba(0,0,0,0) 100%);
+        }
+        #about .container {
+            position: relative;
+            z-index: 1;
+        }
+        @keyframes about-grid-move {
+            from { background-position: 0 0, 0 0; }
+            to { background-position: 40px 40px, 40px 40px; }
+        }
+
+        /* --- Experience timeline: growth marker at the tip of the line --- */
+        #experience .timeline {
+            position: relative;
+        }
+        #experience .timeline-growth-marker {
+            position: absolute;
+            left: 50%;
+            top: -46px;
+            transform: translateX(-50%);
+            z-index: 5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            pointer-events: none;
+        }
+        #experience .growth-arrow {
+            color: #ff283c;
+            font-size: 20px;
+            line-height: 1;
+            text-shadow: 0 0 12px rgba(255, 40, 60, 0.9), 0 0 24px rgba(255, 40, 60, 0.5);
+            animation: growth-bounce 1.6s ease-in-out infinite;
+        }
+        #experience .growth-ring {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 40, 60, 0.55);
+            margin-top: 4px;
+            animation: growth-pulse 1.6s ease-out infinite;
+        }
+        @keyframes growth-bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+        }
+        @keyframes growth-pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 40, 60, 0.55); opacity: 1; }
+            100% { box-shadow: 0 0 0 14px rgba(255, 40, 60, 0); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <h1 class="logo">DMG</h1>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#education">Education </a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#certifications">Certifications</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero" class="hero-section" style="position: relative; overflow: visible;">
+            <canvas id="hero-particles" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 50; pointer-events: none; display: block;"></canvas>
+            <div class="hero-content" style="position: relative; z-index: 51;">
+                <h2 class="animate-fade-in">Hello, I'm DIYA</h2>
+                <p class="animate-slide-up">A passionate MCA student and budding developer focused on building clean, efficient web applications.</p>
+                <a href="#contact" class="btn animate-scale-up">Get In Touch</a>
+            </div>
+            <div class="hero-image animate-fade-in" style="position: relative; z-index: 51;">
+                 <img src="./static/diy_toonified.png" alt="Diya Toonified">
+                </div>
+        </section>
+
+        <section id="about" class="content-section about-section-animated">
+            <div class="about-grid-bg"></div>
+            <div class="container">
+                <h2 class="section-title">👤 About Me</h2>
+                
+                <div class="about-content-box">
+                    <p>
+                        As an MCA student and BCA graduate from Sacred Heart College, I’ve built a strong foundation in software development through academic learning and hands-on experience. I’ve worked as a Front-End Developer at Petra and as an EmpowerHer Intern at Talrop, gaining practical skills in development, teamwork, and product workflows. I’m also expanding my knowledge through IBM SkillsBuild certifications in Prompt Engineering and AI. Passionate about coding and problem-solving, I enjoy learning new technologies and aim to grow into a capable full-stack developer who can build reliable and impactful applications.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="education" class="content-section">
+            <div class="container">
+                <h2 class="section-title">🎓 Education </h2>
+                
+                <div class="subsection">
+                    <h3>Education History</h3>
+                    <div class="education-grid">
+                        
+                        <div class="education-card animate-hover-lift">
+                            <h4>Masters of Computer Application (MCA)</h4>
+                            <p class="institution">Rajagiri College of Social Science</p>
+                            <p class="date">2025 - 2027</p>
+                            <i class="fas fa-graduation-cap card-icon"></i>
+                        </div> 
+                        
+                        <div class="education-card animate-hover-lift">
+                            <h4>Bachelors of Computer Application (BCA)</h4>
+                            <p class="institution">Sacred Heart College, Thevara</p>
+                            <p class="date">2022 - 2025</p>
+                            <i class="fas fa-graduation-cap card-icon"></i>
+                        </div>
+                        
+                        <div class="education-card animate-hover-lift">
+                            <h4>Higher Secondary School</h4>
+                            <p class="institution">Don Bosco Senior Secondary</p>
+                            <p class="date">2020 - 2022</p>
+                            <i class="fas fa-school card-icon"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="subsection">
+                    <h3>Technical Skills</h3>
+                    <div class="skills-grid">
+                        <span class="skill-tag">HTML5</span>
+                        <span class="skill-tag">CSS3</span>
+                        <span class="skill-tag">Python (Flask)</span>
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">C</span>
+                        <span class="skill-tag">Java</span>
+                        <span class="skill-tag">Git & GitHub</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="content-section">
+            <div class="container">
+                <h2 class="section-title">🚀 Projects </h2>
+                
+                <div class="project-grid">
+                    <div class="project-card animate-hover-scale">
+                        <div class="project-card-header">
+                            <h4>Resource Booking System</h4>
+                        </div>
+                        <div class="project-card-body">
+                            <p>Developed a full-stack web application to simplify institutional resource management by allowing users to book and manage college resources such as venues, transportation, media services, and mess facilities. The system includes role-based access, booking approvals, availability tracking, notifications, and admin management features. Built using React.js for the frontend and Django REST Framework for the backend.</p>
+                            <p class="tech-stack"><strong>Tech Stack:</strong> React.js, Django, Django REST Framework, PostgreSQL, Celery, Redis</p>
+                        </div>
+                    </div>
+
+                    <div class="project-card animate-hover-scale">
+                        <div class="project-card-header">
+                            <h4>Smart Expense Tracker</h4>
+                        </div>
+                        <div class="project-card-body">
+                            <p>A full-stack Django web app for tracking personal spending, featuring interactive charts, budget management, natural-language expense entry, and automated spending insights. Deployed live on PythonAnywhere.</p>
+                            <ul class="tech-list">
+                                <li><strong>Backend:</strong> Python, Django</li>
+                                <li><strong>Database:</strong> SQLite</li>
+                                <li><strong>Frontend:</strong> HTML, CSS, JavaScript</li>
+                                <li><strong>Data visualization:</strong> Chart.js</li>
+                                <li><strong>Deployment:</strong> PythonAnywhere, WhiteNoise (static file serving), Git/GitHub</li>
+                                <li><strong>Key concepts:</strong> User authentication, CRUD operations, ORM, data aggregation, natural-language parsing, responsive design</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="project-card animate-hover-scale">
+                        <div class="project-card-header">
+                            <h4>CastMe</h4>
+                        </div>
+                        <div class="project-card-body">
+                            <p>CastMe is a casting and talent management platform that connects artists and casting directors, offering features like profiles, casting calls, workshops, mentorship, and communication. It is built using Flutter for the mobile app, HTML & CSS for the admin panel, Python (Flask) for the backend, and MySQL for database management.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card animate-hover-scale">
+                        <div class="project-card-header">
+                            <h4>Art Gallery Web Application</h4>
+                        </div>
+                        <div class="project-card-body">
+                            <p>A responsive website built to display artworks dynamically using data stored in a MySQL database. The project focuses on clean design and structured data handling. Technologies: HTML, CSS, JavaScript, MySQL</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="content-section experience-section">
+            <div class="container">
+                <h2 class="section-title">💼 Experience</h2>
+                <div class="timeline">
+                    <div class="timeline-growth-marker" aria-hidden="true">
+                        <span class="growth-arrow">▲</span>
+                        <span class="growth-ring"></span>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>Front-End Developer & UI/UX Designer</h4>
+                        <p>Pet.Ra | Aug '23 - Present</p>
+                        <ul>
+                            <li>Currently working as a UI/UX Designer and Front-End Developer at Petra.</li>
+                            <li>Responsible for designing intuitive user interfaces and developing front-end solutions to enhance user experiences across web and mobile platforms.</li>
+                        </ul>
+                        <span class="timeline-dot"></span>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <h4>EmpowerHer Intern – Technology & Leadership Development</h4>
+                        <p>Talrop | Aug '24 - Feb '25</p>
+                        <ul>
+                            <li>Participated in the EmpowerHer Internship Program at Talrop, focusing on technology, leadership, and personal development.</li>
+                        </ul>
+                        <span class="timeline-dot"></span>
+                    </div>
+
+                    <div class="timeline-item">
+                        <h4>Front-End Developer Intern (Flutter)</h4>
+                        <p>WeCodeLife · Edapally | May '24 - May '24</p>
+                        <ul>
+                            <li>Completed a 1-month internship, focusing on Flutter for cross-platform mobile application development.</li>
+                        </ul>
+                        <span class="timeline-dot"></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="certifications" class="content-section">
+            <div class="container">
+                <h2 class="section-title">🏆 Certifications & Workshops</h2>
+                
+                <div class="cert-grid">
+                    
+                    <div class="cert-card formal-cert animate-hover-scale">
+                        <i class="fas fa-award icon"></i>
+                        <h4>IBM SkillsBuild AI: Prompt Engineering</h4>
+                        <p class="issuer">IBM SkillsBuild Student Ambassador Program</p>
+                        <p class="date">Dec '24 | Expires: Jan '25</p>
+                        <p class="description">Completed a specialized course focused on the principles and best practices of prompt engineering.</p>
+                    </div>
+
+                    <div class="cert-card workshop-card animate-hover-scale">
+                        <i class="fas fa-code icon-workshop"></i>
+                        <h4>Website Designing Workshop</h4>
+                        <p class="description">Completed a hands-on workshop on HTML, CSS, MySQL, and PHP, gaining practical experience in web development and database integration.</p>
+                    </div>
+
+                    <div class="cert-card workshop-card animate-hover-scale">
+                        <i class="fas fa-brain icon-workshop"></i>
+                        <h4>Critical Thinking & Innovative Design Workshop</h4>
+                        <p class="description">Participated in a workshop focused on problem-solving, critical thinking, and innovative design approaches.</p>
+                    </div>
+                    
+                    <div class="cert-card workshop-card animate-hover-scale">
+                        <i class="fas fa-microchip icon-workshop"></i>
+                        <h4>Emerging Technology Workshop</h4>
+                        <p class="description">Attended a workshop on emerging technologies, gaining awareness of current trends and real-world applications.</p>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+
+
+        <section id="contact" class="content-section">
+            <div class="container contact-info">
+                <h2 class="section-title">📧 Contact Me</h2>
+                <p>I'm currently looking for new opportunities. Feel free to reach out!</p>
+                <div class="contact-details">
+                    <p><i class="fas fa-envelope icon"></i> Email: <a href="mailto:diyamar007@gmail.com">diyamar007@gmail.com</a></p>
+                    <p><i class="fas fa-phone icon"></i> Phone: +91 8590781707</p>
+                    <p><i class="fas fa-map-marker-alt icon"></i> Kochi, kerala, India</p>
+                </div>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/dmg007" target="_blank" class="social-icon animate-hover-jiggle"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://github.com/diyamarygeorge" target="_blank" class="social-icon animate-hover-jiggle"><i class="fab fa-github"></i></a>
+                    <a href="https://twitter.com/@Diya2239" target="_blank" class="social-icon animate-hover-jiggle"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Diya Mary George. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // --- Hero section: red particles that drift and repel from the mouse ---
+        (function () {
+            function init() {
+                const canvas = document.getElementById('hero-particles');
+                const section = document.getElementById('hero');
+                if (!canvas || !section) {
+                    console.warn('Hero particle animation: canvas or #hero section not found.');
+                    return;
+                }
+                const ctx = canvas.getContext('2d');
+
+                let width, height, particles;
+                const PARTICLE_COUNT = 50;
+                const REPEL_RADIUS = 120;
+                const REPEL_STRENGTH = 2.6;
+                const RETURN_STRENGTH = 0.02;
+                const FRICTION = 0.92;
+
+                let mouse = { x: -9999, y: -9999, active: false };
+
+                function resize() {
+                    const rect = section.getBoundingClientRect();
+                    width = canvas.width = Math.max(rect.width, window.innerWidth);
+                    height = canvas.height = Math.max(rect.height, 400);
+                }
+
+                function makeParticles() {
+                    particles = [];
+                    for (let i = 0; i < PARTICLE_COUNT; i++) {
+                        const x = Math.random() * width;
+                        const y = Math.random() * height;
+                        particles.push({
+                            x, y,
+                            baseX: x, baseY: y,
+                            vx: 0, vy: 0,
+                            r: 3 + Math.random() * 4,
+                            driftAngle: Math.random() * Math.PI * 2,
+                            driftSpeed: 0.15 + Math.random() * 0.25,
+                            alpha: 0.55 + Math.random() * 0.4
+                        });
+                    }
+                }
+
+                function step() {
+                    ctx.clearRect(0, 0, width, height);
+
+                    for (const p of particles) {
+                        p.driftAngle += 0.005;
+                        const driftX = Math.cos(p.driftAngle) * p.driftSpeed;
+                        const driftY = Math.sin(p.driftAngle) * p.driftSpeed;
+
+                        if (mouse.active) {
+                            const dx = p.x - mouse.x;
+                            const dy = p.y - mouse.y;
+                            const dist = Math.sqrt(dx * dx + dy * dy);
+                            if (dist < REPEL_RADIUS && dist > 0.01) {
+                                const force = (1 - dist / REPEL_RADIUS) * REPEL_STRENGTH;
+                                p.vx += (dx / dist) * force;
+                                p.vy += (dy / dist) * force;
+                            }
+                        }
+
+                        p.vx += ((p.baseX + driftX * 20) - p.x) * RETURN_STRENGTH;
+                        p.vy += ((p.baseY + driftY * 20) - p.y) * RETURN_STRENGTH;
+
+                        p.vx *= FRICTION;
+                        p.vy *= FRICTION;
+
+                        p.x += p.vx;
+                        p.y += p.vy;
+
+                        ctx.beginPath();
+                        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                        ctx.fillStyle = `rgba(255, 40, 60, ${p.alpha})`;
+                        ctx.fill();
+                    }
+
+                    requestAnimationFrame(step);
+                }
+
+                section.addEventListener('mousemove', (e) => {
+                    const rect = section.getBoundingClientRect();
+                    mouse.x = e.clientX - rect.left;
+                    mouse.y = e.clientY - rect.top;
+                    mouse.active = true;
+                });
+
+                section.addEventListener('mouseleave', () => {
+                    mouse.active = false;
+                });
+
+                window.addEventListener('resize', () => {
+                    resize();
+                    makeParticles();
+                });
+
+                resize();
+                makeParticles();
+                step();
+                console.log('Hero particle animation initialized:', PARTICLE_COUNT, 'particles, canvas size', width, height);
+            }
+
+            if (document.readyState === 'complete') {
+                init();
+            } else {
+                window.addEventListener('load', init);
+            }
+        })();
+    </script>
+</body>
+</html>
